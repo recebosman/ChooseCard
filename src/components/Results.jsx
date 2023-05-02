@@ -10,10 +10,10 @@ const Results = ({ card }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{card.name}</h2>
-        <p>{card.position}</p>
+        <h2 className="card-title">Tür: {card.name}</h2>
+        <p className="capitalize">Position: {card.position}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">{card.id}</button>
+          <button className="btn btn-primary"> Card Number: {card.id}</button>
         </div>
       </div>
     </div>

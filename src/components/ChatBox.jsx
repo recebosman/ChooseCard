@@ -33,7 +33,7 @@ const ChatBox = ({ cards }) => {
           <div className="chat chat-start">
             <div className="chat-bubble">
               {
-                "Welcome to the chat! You can ask me about your cards by typing 'Benim kartlarım ne ?' "
+                "Welcome to the chat! You can ask me about your cards by typing 'Benim kartlarım ne ?' and you can save your cards by typing 'Kartlarımı kaydet' "
               }
             </div>
           </div>

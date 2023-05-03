@@ -26,7 +26,7 @@ const App = () => {
       if (cards.length === 3) {
         setTimeout(() => {
           setShow(false);
-        }, 2000);
+        }, 4000);
       }
       toast.success(`${item.name} kartını çektin!`);
       setCards((prevCards) => [...prevCards, card]);

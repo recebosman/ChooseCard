@@ -61,7 +61,9 @@ const Cards = ({ item, handleCardDraw }) => {
       <button
         type="button"
         className="btn bg-violet-500 text-white hover:bg-violet-700"
-      ></button>
+      >
+        Kart Çek
+      </button>
     </motion.div>
   );
 };

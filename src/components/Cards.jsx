@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Cards = ({ item, handleCardDraw }) => {
+  const [active, setActive] = useState(false);
+  const [activeId, setActiveId] = useState(null);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -26,12 +28,17 @@ const Cards = ({ item, handleCardDraw }) => {
         : item.name === "Tahta"
         ? "#fbbf24"
         : "inherit",
+    border: `4px solid ${active && activeId === item.id ? "#fff" : "red"}`,
   };
 
   return (
     <motion.div
       key={item.id}
-      onClick={() => handleCardDraw(item)}
+      onClick={() => {
+        handleCardDraw(item);
+        setActive(true);
+        setActiveId(item.id);
+      }}
       initial={{ opacity: 0, y: 50 }}
       whileHover={{ translateY: -10, zIndex: 1 }}
       style={cardStyle}

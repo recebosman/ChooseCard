@@ -50,7 +50,7 @@ const App = () => {
         {cards.length >= 1 &&
           cards.map((card) => <Results key={card.id} card={card} />)}
       </div>
-      {cards.length === 4 && show === false && <ChatBox cards={cards} />}
+      {cards.length === 4 && show === false && <ChatBox item={cards} />}
       <ToastContainer />
     </div>
   );

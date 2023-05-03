@@ -33,7 +33,7 @@ const ChatBox = ({ cards }) => {
   };
 
   return (
-    <div className="w-1/3">
+    <div className="w-1/3 mt-12">
       {showResultTable ? (
         <ResultTable card={cards} />
       ) : (

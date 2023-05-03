@@ -2,7 +2,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 
-const Cards = ({ item, handleCardDraw }) => {
+const Cards = ({ item, handleCardDraw, handleChangeCard, changeCard }) => {
   const controls = useAnimation();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Cards = ({ item, handleCardDraw }) => {
       whileHover={{ translateY: -10, zIndex: 1 }}
       style={cardStyle}
       animate={controls}
-      className="text-white  card text-center  select-none w-[250px] p-2 h-96 flex flex-col items-center justify-between rounded-lg bg-gradient-to-tl from-[#FDC362] to-[#F7971E]
+      className="text-white card text-center  select-none w-[250px] p-2 h-96 flex flex-col items-center justify-between rounded-lg bg-gradient-to-tl from-[#FDC362] to-[#F7971E]
        cursor-pointer hover:bg-opacity-80 transition duration-300 border-4 border-red-400 hover:border-[#ffff] hover:shadow-lg"
     >
       <h2
@@ -61,8 +61,9 @@ const Cards = ({ item, handleCardDraw }) => {
       <button
         type="button"
         className="btn bg-violet-500 text-white hover:bg-violet-700"
+        onClick={() => handleChangeCard(item.id)}
       >
-        Kart çekmek için tıklayınız
+        {changeCard === null ? "Kart Seçiniz" : "Kartı Değiştir"}
       </button>
     </motion.div>
   );

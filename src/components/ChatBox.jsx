@@ -27,13 +27,16 @@ const ChatBox = ({ cards }) => {
       setShowResultTable(false);
       setShow(false);
       setWrong(true);
+      setTimeout(() => {
+        setWrong(false);
+      }, 3000);
       toast.error("Lütfen geçerli bir komut giriniz!");
     }
     setInput("");
   };
 
   return (
-    <div className="w-1/3 mt-12">
+    <div className="w-1/3 h-screen mt-12">
       {showResultTable ? (
         <ResultTable card={cards} />
       ) : (

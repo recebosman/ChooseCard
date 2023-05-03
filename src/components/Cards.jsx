@@ -2,7 +2,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 
-const Cards = ({ item, handleCardDraw, handleChangeCard, changeCard }) => {
+const Cards = ({ item, handleCardDraw }) => {
   const controls = useAnimation();
 
   useEffect(() => {
@@ -61,10 +61,7 @@ const Cards = ({ item, handleCardDraw, handleChangeCard, changeCard }) => {
       <button
         type="button"
         className="btn bg-violet-500 text-white hover:bg-violet-700"
-        onClick={() => handleChangeCard(item.id)}
-      >
-        {changeCard === null ? "Kart Seçiniz" : "Kartı Değiştir"}
-      </button>
+      ></button>
     </motion.div>
   );
 };

@@ -16,20 +16,25 @@ const Results = ({ card }) => {
       }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <h2
-        style={{
-          textShadow: "2px 2px 2px #000000",
-        }}
-        className="text-2xl font-bold mb-2 mr-auto flex flex-col items-center "
-      >
-        {card.name}
-        <span>
-          {card.name === "Ateş" && "🔥"}
-          {card.name === "Su" && "💧"}
-          {card.name === "Hava" && "💨"}
-          {card.name === "Tahta" && "🌱"}
+      <div className="flex justify-between items-center w-full">
+        <h2
+          style={{
+            textShadow: "2px 2px 2px #000000",
+          }}
+          className="text-2xl font-bold mb-2 flex flex-col items-center "
+        >
+          {card.name}
+          <span>
+            {card.name === "Ateş" && "🔥"}
+            {card.name === "Su" && "💧"}
+            {card.name === "Hava" && "💨"}
+            {card.name === "Tahta" && "🌱"}
+          </span>
+        </h2>
+        <span className="text-4xl text-white font-bold border-2 border-black  p-2 rounded-full centered">
+          {card.id}
         </span>
-      </h2>
+      </div>
       <div className="avatar">
         <div className="w-32 h-32 object-contain">
           <img
@@ -41,9 +46,9 @@ const Results = ({ card }) => {
       </div>
       <button
         type="button"
-        className="btn bg-violet-500 text-white hover:bg-violet-700"
+        className="btn bg-gray-800 text-white hover:bg-violet-700"
       >
-        {card.position === "dik" ? "Dik" : "Ters"}
+        Position: {card.position === "dik" ? "Dik" : "Ters"}
       </button>
     </motion.div>
   );

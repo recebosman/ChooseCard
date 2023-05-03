@@ -53,6 +53,7 @@ const Cards = ({ item, handleCardDraw }) => {
           {item.name === "Tahta" && "🌱"}
         </span>
       </h2>
+
       <div className="avatar">
         <div className="w-32 h-32 object-contain">
           <img src={item.icon} alt={item.name} />

@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
+import { toast } from "react-toastify";
 import ResultTable from "./ResultTable";
 
 const ChatBox = ({ cards }) => {
   const [show, setShow] = useState(false);
+  const [help, setHelp] = useState(false); // eslint-disable-line no-unused-vars
   const [showResultTable, setShowResultTable] = useState(false);
+  const [wrong, setWrong] = useState(false); // eslint-disable-line no-unused-vars
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
@@ -16,9 +19,15 @@ const ChatBox = ({ cards }) => {
     } else if (input === "Kartlarımı kaydet") {
       setShow(false);
       setShowResultTable(true);
+    } else if (input === "Yardım") {
+      setShowResultTable(false);
+      setShow(false);
+      setHelp(true);
     } else {
       setShowResultTable(false);
       setShow(false);
+      setWrong(true);
+      toast.error("Lütfen geçerli bir komut giriniz!");
     }
     setInput("");
   };
@@ -51,6 +60,23 @@ const ChatBox = ({ cards }) => {
                     </li>
                   </ul>
                 ))}
+              </div>
+            </div>
+          )}
+          {help && (
+            <div className="chat chat-end">
+              <div className="chat-bubble">
+                Kartlarınız hakkında bilgi almak için "Benim kartlarım ne ?"
+                yazabilirsiniz. Kartlarınızı kaydetmek için "Kartlarımı kaydet"
+                başka bir kelime yazdınızda herhangi bir bildirim alamazsınız.
+              </div>
+            </div>
+          )}
+          {wrong && (
+            <div className="chat chat-end">
+              <div className="chat-bubble">
+                Lütfen geçersiz bir komut girmeyiniz. Geçerli komutlar için
+                "Yardım" yazabilirsiniz.
               </div>
             </div>
           )}

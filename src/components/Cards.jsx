@@ -15,17 +15,46 @@ const Cards = ({ item, handleCardDraw }) => {
     });
   }, [controls]);
 
+  const cardStyle = {
+    color:
+      item.name === "Ateş"
+        ? "#f87171"
+        : item.name === "Su"
+        ? "#60a5fa"
+        : item.name === "Hava"
+        ? "#93c5fd"
+        : item.name === "Tahta"
+        ? "#fbbf24"
+        : "inherit",
+  };
+
   return (
     <motion.div
       key={item.id}
       onClick={() => handleCardDraw(item)}
       initial={{ opacity: 0, y: 50 }}
+      whileHover={{ translateY: -10, zIndex: 1 }}
+      style={cardStyle}
       animate={controls}
-      className="text-white card text-center p-4 h-72 flex flex-col items-center justify-between rounded-lg bg-[#1A0033] cursor-pointer hover:bg-opacity-80 transition duration-300 border-4 border-[#9a54e0] hover:border-[#ffff] hover:shadow-lg"
+      className="text-white  card text-center  select-none w-[250px] p-2 h-96 flex flex-col items-center justify-between rounded-lg bg-gradient-to-tl from-[#FDC362] to-[#F7971E]
+       cursor-pointer hover:bg-opacity-80 transition duration-300 border-4 border-red-400 hover:border-[#ffff] hover:shadow-lg"
     >
-      <h2 className="text-2xl font-bold mb-2">{item.name}</h2>
+      <h2
+        style={{
+          textShadow: "2px 2px 2px #000000",
+        }}
+        className="text-2xl font-bold mb-2 mr-auto flex flex-col items-center "
+      >
+        {item.name}
+        <span>
+          {item.name === "Ateş" && "🔥"}
+          {item.name === "Su" && "💧"}
+          {item.name === "Hava" && "💨"}
+          {item.name === "Tahta" && "🌱"}
+        </span>
+      </h2>
       <div className="avatar">
-        <div className="w-24 object-contain">
+        <div className="w-32 h-32 object-contain">
           <img src={item.icon} alt={item.name} />
         </div>
       </div>

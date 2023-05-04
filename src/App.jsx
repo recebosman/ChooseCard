@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+
+import { v4 as uuidv4 } from "uuid";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
@@ -7,21 +9,34 @@ import Cards from "./components/Cards";
 import Results from "./components/Results";
 import ChatBox from "./components/ChatBox";
 import FlipCard from "./../public/audio/flipcard.mp3";
+import useCardStore from "./zustand/cardStore";
+import useUserStore from "./zustand/userStore";
+import axios from "axios";
 
-const App = () => {
+const Home = () => {
+  const userData = useUserStore((state) => state.user);
+  const addToCards = useCardStore((state) => state.addToCards);
+  const cards = useCardStore((state) => state.cards);
   const [show, setShow] = useState(true);
-  const [cards, setCards] = useState([]);
   const flipCardAudio = new Audio(FlipCard);
 
-  const handleCardDraw = (item) => {
+  const handleCardDraw = async (item) => {
     const randomCard = Math.floor(Math.random() * 52) + 1;
     const randomPosition = Math.random() < 0.5 ? "dik" : "yatay";
     const card = {
       id: randomCard,
       name: item.name,
       position: randomPosition,
-      icon: item.icon,
+      number: randomCard,
+      icon: item.name,
     };
+    const newCard = {
+      ...card,
+      userId: userData._id,
+    };
+
+    console.log("newCard", newCard);
+
     if (cards.filter((card) => card.name === item.name).length < 1) {
       if (cards.length === 3) {
         setTimeout(() => {
@@ -29,10 +44,20 @@ const App = () => {
         }, 4000);
       }
       toast.success(`${item.name} kartını çektin!`);
-      setCards((prevCards) => [...prevCards, card]);
+      addToCards(card);
       flipCardAudio.play();
     } else {
       toast.error(`${item.name} kartını zaten çektiniz!`);
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/users/card/${userData._id}`,
+        newCard
+      );
+      console.log("postResponse", response.data);
+    } catch (error) {
+      console.log("postError", error);
+      toast.error("İstek gönderilirken bir hata oluştu");
     }
   };
 
@@ -56,4 +81,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
